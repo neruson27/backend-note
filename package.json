@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --exec babel-node --presets babel-preset-env",
+    "start": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm install -g nodemon babel-cli babel-core babel-loader babel-preset-env"
   },
@@ -21,10 +21,10 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.2.5",
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/node": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
     "dotenv": "^16.0.1",
     "nodemon": "^2.0.19"
   }

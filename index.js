@@ -29,6 +29,6 @@ app.use(morgan('dev'));
 app.use('/note', routes.note);
 app.use('/user', routes.user);
 
-app.listen(process.env.PORT, () => console.log(`Server is listening on port ${process.env.PORT}`));
+app.listen(process.env.PORT || "8080", () => console.log(`Server is listening on port ${process.env.PORT}`));
 
 export default app;
