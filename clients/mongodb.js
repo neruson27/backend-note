@@ -4,6 +4,10 @@ import config from '../config';
 
 let connection;
 
+/** 
+ * Function that connect mongoose with mongodb
+ * require to mongoUrl has configured in the .env file.
+*/
 const connect = () => {
   if (connection) return connection;
 

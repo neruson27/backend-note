@@ -3,13 +3,13 @@ import NoteController from '../controllers/NoteController';
 
 const note = express.Router();
 
-// getAll
+// getAll notes of the user
 note.get('/', NoteController.getNotesByUser);
-// create
+// create note
 note.post('/', NoteController.createNote);
-// update
+// update note
 note.put('/:id', NoteController.updateNote);
-// deleted
+// deleted note
 note.delete('/:id', NoteController.deleteNote);
 
 export default note;

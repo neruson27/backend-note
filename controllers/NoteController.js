@@ -2,6 +2,16 @@ import Mongoose from 'mongoose';
 import { Note } from '../models';
 import { decodeJWT } from '../utils/jwt';
 
+/**
+ * Controller of Note API
+ */
+
+/**
+ * Get all notes by user
+ * GET /note
+ * 
+ * @returns status 200 with array of notes or status 400
+ */
 async function getNotesByUser(req, res) {
   const token = req.headers.authorization;
   const userId = decodeJWT(token).id;
@@ -13,6 +23,15 @@ async function getNotesByUser(req, res) {
   return res.status(404).send({message: 'NO CONTENT'});
 }
 
+/**
+ * Update a note
+ * PUT /note/:id
+ * 
+ * @param id can be obtain from the req param or body
+ * @param title string not required
+ * @param body string not required
+ * @returns status 200 with the updated note object or status 304
+ */
 async function updateNote(req, res) {
   const { id } = req.params || req.body
   const { title, body } = req.body
@@ -45,6 +64,14 @@ async function updateNote(req, res) {
   return res.status(304);
 }
 
+/**
+ * Create a note
+ * POST /note
+ * 
+ * @param title required
+ * @param body required
+ * @returns status 200 with the note object or status 500
+ */
 async function createNote(req, res) {
   const { title, body } = req.body
   const token = req.headers.authorization;
@@ -64,6 +91,13 @@ async function createNote(req, res) {
   return res.status(500);
 }
 
+/**
+ * Delete a note
+ * DEL /note/:id
+ * 
+ * @param id can be obtain from the req param
+ * @returns status 200 if all okey, status 400 if id is undefined or status 500 if mongo has an error
+ */
 async function deleteNote(req, res) {
   const { id } = req.params;
   if (!id) {

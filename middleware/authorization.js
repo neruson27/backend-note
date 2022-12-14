@@ -2,6 +2,10 @@ import Mongoose from 'mongoose';
 import { User } from '../models';
 import { decodeJWT } from '../utils/jwt';
 
+/**
+ * Middleware for avoid unauthorized request
+ * @returns status 403 if the token is undefined, status 403 if the user doesn't exist and status 500 if the token is invalid.
+ */
 const authorization = async (req, res, next) => {
   const token = req.headers.authorization;
 
