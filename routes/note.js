@@ -4,12 +4,12 @@ import NoteController from '../controllers/NoteController';
 const note = express.Router();
 
 // getAll
-note.get('/', NoteController.getAllNotesByUser);
+note.get('/', NoteController.getNotesByUser);
 // create
-note.post('/', NoteController.createOneNote);
+note.post('/', NoteController.createNote);
 // update
-note.put('/:id', NoteController.updateOneNote);
+note.put('/:id', NoteController.updateNote);
 // deleted
-note.delete('/:id', NoteController.deleteOneNote);
+note.delete('/:id', NoteController.deleteNote);
 
 export default note;

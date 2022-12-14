@@ -26,6 +26,10 @@ app.use(authorization);
 
 app.use(morgan('dev'));
 
+app.options('*', (req, res) => {
+  return res.status(200).send();
+})
+
 app.use('/note', routes.note);
 app.use('/user', routes.user);
 

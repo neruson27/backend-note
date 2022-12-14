@@ -2,7 +2,7 @@ import Mongoose from 'mongoose';
 import { Note } from '../models';
 import { decodeJWT } from '../utils/jwt';
 
-async function getAllNotesByUser(req, res) {
+async function getNotesByUser(req, res) {
   const token = req.headers.authorization;
   const userId = decodeJWT(token).id;
 
@@ -13,7 +13,7 @@ async function getAllNotesByUser(req, res) {
   return res.status(404).send({message: 'NO CONTENT'});
 }
 
-async function updateOneNote(req, res) {
+async function updateNote(req, res) {
   const { id } = req.params || req.body
   const { title, body } = req.body
   const token = req.headers.authorization;
@@ -37,6 +37,7 @@ async function updateOneNote(req, res) {
   }
 
   if (save) {
+    note.updateAt = new Date();
     const savedNote = await note.save();
     return res.status(200).send(savedNote);
   }
@@ -44,7 +45,7 @@ async function updateOneNote(req, res) {
   return res.status(304);
 }
 
-async function createOneNote(req, res) {
+async function createNote(req, res) {
   const { title, body } = req.body
   const token = req.headers.authorization;
   const userId = decodeJWT(token).id;
@@ -63,7 +64,7 @@ async function createOneNote(req, res) {
   return res.status(500);
 }
 
-async function deleteOneNote(req, res) {
+async function deleteNote(req, res) {
   const { id } = req.params;
   if (!id) {
     return res.status(400).send({message: 'NO ID'});
@@ -79,8 +80,8 @@ async function deleteOneNote(req, res) {
 }
 
 export default {
-  getAllNotesByUser,
-  updateOneNote,
-  createOneNote,
-  deleteOneNote
+  getNotesByUser,
+  updateNote,
+  createNote,
+  deleteNote
 }

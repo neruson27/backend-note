@@ -29,6 +29,12 @@ async function login(req, res) {
 async function createUser(req, res) {
   const { user, password } = req.body;
 
+  const existUser = await User.findOne({user});
+
+  if (existUser) {
+    return res.status(400).send({message: "USER EXIST"});
+  }
+
   const createdUser = await User.create({
     user,
     password: await encryptPassword(password)
